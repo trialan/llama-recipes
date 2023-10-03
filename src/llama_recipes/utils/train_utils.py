@@ -77,6 +77,7 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
 
                 # Save model checkpoint every 2000 steps
                 if step % 2000 == 0:
+                    output_dir = "/home/paperspace/tr_models/"
                     checkpoint_path = os.path.join(output_dir, f"checkpoint_{step}")
                     os.makedirs(checkpoint_path, exist_ok=True)
                     model.save_pretrained(checkpoint_path)
