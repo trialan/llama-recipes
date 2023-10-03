@@ -1,3 +1,4 @@
+import torch
 from datasets import load_dataset
 from torch.utils.data import Dataset
 from llama_recipes.configs.datasets import biblechat_dataset
@@ -29,8 +30,7 @@ def format_dialog(dialog_pair, tokenizer):
     dialog_tokens = tokenizer(fmt_pair,
                               padding='max_length',
                               max_length=512,
-                              truncation=True,
-                              return_tensors='pt')
+                              truncation=True)
     return dialog_tokens
 
 
@@ -43,7 +43,11 @@ def huggingface_to_pytorch(hf_dataset):
             return len(self.hf_dataset)
 
         def __getitem__(self, idx):
-            return self.hf_dataset[idx]
+            item = self.hf_dataset[idx]
+            item['input_ids'] = torch.tensor(item['input_ids'])
+            item['attention_mask'] = torch.tensor(item['attention_mask'])
+            return item
+
     return CustomPyTorchDataset(hf_dataset)
 
 
@@ -54,4 +58,4 @@ def format_as_str(dialog_pair):
 
 if __name__ == '__main__':
     tokenizer = get_tokenizer()
-    ds  = load_dataset(None, tokenizer, 'test')
+    ds  = load_custom_dataset(None, tokenizer, 'test')
