@@ -1,5 +1,4 @@
 from datasets import load_dataset
-
 from llama_recipes.configs.datasets import biblechat_dataset
 
 from gloohack.dataset.script import get_dataset
@@ -9,9 +8,13 @@ from gloohack.modelling.config import get_tokenizer
 
 B_INST, E_INST = "[INST]", "[/INST]"
 DATASET = "tr416/gloo_dataset_v2"
-
+TOKENIZED_DATASET = "tr416/gloo_dataset_v2_tokenized"
 
 def get_custom_dataset(dataset_config, tokenizer, split):
+    ds = load_dataset(TOKENIZED_DATASET, split=split, use_auth_token=True)
+    return ds
+
+def load_custom_dataset(dataset_config, tokenizer, split):
     dataset = load_dataset(DATASET, split=split, use_auth_token=True)
     fmt_dataset = dataset.map(lambda x: format_dialog(x, tokenizer))
     fmt_dataset = fmt_dataset.remove_columns(['user', 'llm'])
