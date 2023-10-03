@@ -45,6 +45,7 @@ def huggingface_to_pytorch(hf_dataset):
         def __getitem__(self, idx):
             item = self.hf_dataset[idx]
             item['input_ids'] = torch.tensor(item['input_ids'])
+            item['labels'] = torch.tensor(item['input_ids'])
             item['attention_mask'] = torch.tensor(item['attention_mask'])
             return item
 
