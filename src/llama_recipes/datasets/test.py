@@ -6,6 +6,6 @@ from gloohack.modelling.config import get_tokenizer
 if __name__ == '__main__':
     tokenizer = get_tokenizer()
     bc = get_biblechat_dataset(biblechat_dataset(), tokenizer, "test")
-    ap = get_samsum_dataset(samsun_dataset(), tokenizer, "validation")
+    ap = get_samsum_dataset(samsum_dataset(), tokenizer, "validation")
 
 
