@@ -42,7 +42,8 @@ def format_dialog(dialog_pair, tokenizer):
     dialog_tokens = tokenizer(fmt_pair,
                               padding='max_length',
                               max_length=512,
-                              truncation=True)
+                              truncation=True,
+                              return_tensors='pt',
     return dialog_tokens
 
 
