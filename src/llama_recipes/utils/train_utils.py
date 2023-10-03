@@ -75,8 +75,8 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
             pbar = tqdm(colour="blue", desc=f"Training Epoch: {epoch+1}", total=total_length, dynamic_ncols=True)
             for step, batch in enumerate(train_dataloader):
 
-                # Save model checkpoint every 1000 steps
-                if step % 1000 == 0 and step != 0:
+                # Save model checkpoint every 2000 steps
+                if step % 2000 == 0 and step != 0:
                     checkpoint_path = os.path.join(output_dir, f"checkpoint_{step}")
                     os.makedirs(checkpoint_path, exist_ok=True)
                     model.save_pretrained(checkpoint_path)
