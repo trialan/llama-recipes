@@ -54,6 +54,7 @@ def format_as_str(dialog_pair):
 
 if __name__ == '__main__':
     tokenizer = get_tokenizer()
+    1/0
     ds = get_custom_dataset(biblechat_dataset(), tokenizer, "train")
 
     dataset = load_dataset(DATASET, use_auth_token=True)
