@@ -81,7 +81,7 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
                     os.makedirs(checkpoint_path, exist_ok=True)
                     model.save_pretrained(checkpoint_path)
                     tokenizer.save_pretrained(checkpoint_path)
-                    print(f"Saved checkpoint at {checkpoint_path}")
+                    print(f"*******Saved checkpoint at {checkpoint_path}********")
                 for key in batch.keys():
                     if train_config.enable_fsdp:
                         batch[key] = batch[key].to(local_rank)
