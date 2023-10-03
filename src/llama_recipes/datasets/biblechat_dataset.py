@@ -5,10 +5,10 @@ from gloohack.dataset.script import get_dataset
 from gloohack.modelling.config import get_tokenizer
 
 
-
 B_INST, E_INST = "[INST]", "[/INST]"
 DATASET = "tr416/gloo_dataset_v2"
 TOKENIZED_DATASET = "tr416/gloo_dataset_v2_tokenized"
+
 
 def get_custom_dataset(dataset_config, tokenizer, split):
     ds = load_dataset(TOKENIZED_DATASET, split=split, use_auth_token=True)
@@ -23,7 +23,10 @@ def load_custom_dataset(dataset_config, tokenizer, split):
 
 def format_dialog(dialog_pair, tokenizer):
     fmt_pair = format_as_str(dialog_pair)
-    dialog_tokens = tokenizer(fmt_pair)
+    dialog_tokens = tokenizer(fmt_pair,
+                              padding='max_length',
+                              max_length=512,
+                              truncation=True)
     return dialog_tokens
 
 
