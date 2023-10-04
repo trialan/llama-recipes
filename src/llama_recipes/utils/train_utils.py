@@ -51,7 +51,6 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
     
     Returns: results dictionary containing average training and validation perplexity and loss
     """
-    model = BetterTransformer.transform(model)
     # Create a gradient scaler for fp16
     if train_config.use_fp16 and train_config.enable_fsdp:
         scaler = ShardedGradScaler()
@@ -83,11 +82,9 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
                     output_dir = "/home/paperspace/tr_models/"
                     checkpoint_path = os.path.join(output_dir, f"checkpoint_{step}")
                     os.makedirs(checkpoint_path, exist_ok=True)
-                    model = BetterTransformer.reverse(model)
                     model.save_pretrained(checkpoint_path)
                     tokenizer.save_pretrained(checkpoint_path)
                     print(f"*******Saved checkpoint at {checkpoint_path}********")
-                    model = BetterTransformer.transform(model)
                 for key in batch.keys():
                     if train_config.enable_fsdp:
                         batch[key] = batch[key].to(local_rank)
