@@ -16,6 +16,7 @@ from peft import PeftModel
 from transformers import AutoModelForCausalLM, LlamaTokenizer, LlamaForCausalLM
 from gloohack.modelling.llama import get_completion
 
+import glob
 
 def load_ckpt(base, path):
     """ Offload to avoid RAM OOM, merge_and_unload for normal model fmt """
