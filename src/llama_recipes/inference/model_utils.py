@@ -18,7 +18,8 @@ def load_model(model_name, quantization):
 
 # Function to load the PeftModel for performance optimization
 def load_peft_model(model, peft_model):
-    peft_model = PeftModel.from_pretrained(model, peft_model)
+    peft_model = PeftModel.from_pretrained(model, peft_model,
+                                           offload_folder="tmp")
     return peft_model
 
 # Loading the model from config to load FSDP checkpoints into that
