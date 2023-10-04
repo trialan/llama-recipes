@@ -98,6 +98,7 @@ def main(
 
     batch = {k: v.to("cuda") for k, v in batch.items()}
     start = time.perf_counter()
+    import pdb;pdb.set_trace() 
     with torch.no_grad():
         outputs = model.generate(
             **batch,
