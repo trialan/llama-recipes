@@ -16,6 +16,7 @@ from peft import PeftModel
 from transformers import AutoModelForCausalLM, LlamaTokenizer, LlamaForCausalLM
 from gloohack.modelling.llama import get_completion
 
+import torch
 import glob
 
 def load_ckpt(base, path):
@@ -48,5 +49,7 @@ if __name__ == '__main__':
         s = "Does Jesus like me?"
         x = get_completion(s, model, tokenizer)
         print(x)
+        del model
+        torch.cuda.empty_cache()
 
 
