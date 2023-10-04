@@ -49,7 +49,6 @@ def main(
         print("No user prompt provided. Exiting.")
         sys.exit(1)
     
-    import pdb;pdb.set_trace() 
     # Set the seeds for reproducibility
     torch.cuda.manual_seed(seed)
     torch.manual_seed(seed)
