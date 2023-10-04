@@ -1,5 +1,10 @@
 import sys
 sys.path = sorted(sys.path) #Hack: avoids import of wrong datasets
+if "" in sys.path:
+    sys.path.remove("")
+if "." in sys.path:
+    sys.path.remove(".")
+sys.path.append(".")
 
 from llama_recipes.utils.config_utils import generate_peft_config
 from llama_recipes.configs.training import train_config
