@@ -1,3 +1,6 @@
+import sys
+sys.path = sorted(sys.path) #Hack: avoids import of wrong datasets
+
 from llama_recipes.utils.config_utils import generate_peft_config
 from llama_recipes.configs.training import train_config
 
