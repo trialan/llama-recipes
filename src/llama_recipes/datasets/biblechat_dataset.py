@@ -20,14 +20,14 @@ def get_custom_dataset(dataset_config, tokenizer, split):
 
 def load_custom_dataset(dataset_config, tokenizer, split):
     dataset = load_dataset(DATASET, split=split, use_auth_token=True)
-    fmt_dataset = dataset.map(lambda x: format_dialog(x, tokenizer))
+    fmt_dataset = dataset.map(lambda x: tokenize_dialog(x, tokenizer))
     fmt_dataset = fmt_dataset.remove_columns(['user', 'llm'])
     return fmt_dataset
 
 
-def format_dialog(dialog_pair, tokenizer):
-    fmt_pair = format_as_str(dialog_pair)
-    dialog_tokens = tokenizer(fmt_pair,
+def tokenize_dialog(dialog_pair, tokenizer):
+    dialog_str = f"{dialog_pair['user']} {dialog_pair['llm']}"
+    dialog_tokens = tokenizer(dialog_str,
                               padding='max_length',
                               max_length=512,
                               truncation=True)
@@ -51,10 +51,6 @@ def huggingface_to_pytorch(hf_dataset):
 
     return CustomPyTorchDataset(hf_dataset)
 
-
-def format_as_str(dialog_pair):
-    fmt_str = f"{B_INST} {(dialog_pair['user']).strip()} {E_INST} {(dialog_pair['llm']).strip()} "
-    return fmt_str
 
 
 if __name__ == '__main__':
