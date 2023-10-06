@@ -8,8 +8,8 @@ from gloohack.modelling.config import get_tokenizer
 
 
 B_INST, E_INST = "[INST]", "[/INST]"
-DATASET = "tr416/gloo_dataset_v3_llama_format"
-TOKENIZED_DATASET = "tr416/gloo_dataset_v3_llama_format_tokenized"
+DATASET = "tr416/catholic_denomination_dataset_v1"
+TOKENIZED_DATASET = "tr416/catholic_dataset_v1_tokenized"
 
 
 def get_custom_dataset(dataset_config, tokenizer, split):
