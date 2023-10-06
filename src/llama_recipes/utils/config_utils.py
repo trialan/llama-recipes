@@ -55,7 +55,6 @@ def generate_dataset_config(train_config, kwargs):
         
     assert train_config.dataset in names, f"Unknown dataset: {train_config.dataset}"
     
-    import pdb;pdb.set_trace() 
     dataset_config = {k:v for k, v in inspect.getmembers(datasets)}[train_config.dataset]()
         
     update_config(dataset_config, **kwargs)
