@@ -53,6 +53,3 @@ def huggingface_to_pytorch(hf_dataset):
 
 
 
-if __name__ == '__main__':
-    tokenizer = get_tokenizer()
-    ds  = load_custom_dataset(None, tokenizer, 'test')
