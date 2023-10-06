@@ -1,3 +1,5 @@
+flask
+peft
 absl-py==1.4.0
 accelerate==0.23.0
 agate==1.6.0
@@ -320,7 +322,7 @@ torchvision==0.13.1+cu116
 tornado==6.2
 tqdm==4.64.1
 traitlets==5.8.1
-transformers @ git+https://github.com/huggingface/transformers@1b8decb04c246ec8e1c4ba7f2749043d0876d24e
+transformers==4.34.0
 triton==2.0.0
 Twisted==18.9.0
 typer==0.4.2
